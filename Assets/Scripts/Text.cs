@@ -28,7 +28,7 @@ public class Text : MonoBehaviour
             if (seconds <= 0)
             {
                 paddleMods.ChangePaddle();
-                seconds = 8;
+                seconds = 9;
             }
             else if (seconds >= 0)
             {
@@ -37,9 +37,8 @@ public class Text : MonoBehaviour
 
             miliseconds = 100;
         }
-
         miliseconds -= Time.deltaTime * 100;
 
-        timer.text = string.Format("{0}.{1}", seconds, (int)miliseconds);
+        timer.text = string.Format("{0}", seconds);
     }
 }
