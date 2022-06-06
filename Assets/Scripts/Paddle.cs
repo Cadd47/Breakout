@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Paddle : MonoBehaviour
 {
-    public float speed = 10.0f;
-    public float boundX = 2.25f;
+    public float speed;
+    public float boundX;
     private Rigidbody2D rb;
 
     void Start()
@@ -16,13 +16,22 @@ public class Paddle : MonoBehaviour
     void Update()
     {
         var vel = rb.velocity;
+        var pos = transform.position;
+
+
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
-            vel.x = -speed;
+            if (pos.x != -boundX)
+            {
+                vel.x = -speed;
+            }
         }
         else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
-            vel.x = speed;
+            if(pos.x != boundX)
+            {
+                vel.x = speed;
+            }
         }
         else
         {
@@ -30,7 +39,6 @@ public class Paddle : MonoBehaviour
         }
         rb.velocity = vel;
 
-        var pos = transform.position;
         if (pos.x > boundX)
         {
             pos.x = boundX;
