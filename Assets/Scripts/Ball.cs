@@ -9,6 +9,8 @@ public class Ball : MonoBehaviour
     private Rigidbody2D rb;
     Vector3 lastVelocity;
 
+    GameObject[] dupedBalls;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -19,9 +21,10 @@ public class Ball : MonoBehaviour
     {
         lastVelocity = rb.velocity;
 
-        if (Input.GetKey(KeyCode.R))
+        dupedBalls = GameObject.FindGameObjectsWithTag("Duped");
+        foreach(GameObject dupedBall in dupedBalls)
         {
-            ResetBall();
+            Physics2D.IgnoreCollision(dupedBall.GetComponent<Collider2D>(), GetComponent<Collider2D>());
         }
 
         if (canLaunch)

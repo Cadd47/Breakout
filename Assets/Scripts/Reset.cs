@@ -8,6 +8,7 @@ public class Reset : MonoBehaviour
     public GameObject loser;
     public GameObject winner;
     public GameObject bricks;
+    GameObject[] dupedBalls;
 
     public int point = 0;
 
@@ -18,6 +19,8 @@ public class Reset : MonoBehaviour
 
     private void Update()
     {
+        dupedBalls = GameObject.FindGameObjectsWithTag("Duped");
+
         if(point == 60)
         {
             Win();
@@ -37,12 +40,19 @@ public class Reset : MonoBehaviour
             {
                 Text.ballCount--;
                 loser.SetActive(true);
+
+                Time.timeScale = 0;
+                foreach(GameObject dupeBall in dupedBalls)
+                {
+                    Destroy(dupeBall.gameObject);
+                }
             }
         }
     }
 
     public void Restart()
     {
+        Time.timeScale = 1;
         ball.ResetBall();
         Text.ballCount = 3;
         point = 0;
@@ -56,5 +66,11 @@ public class Reset : MonoBehaviour
     public void Win()
     {
         winner.SetActive(true);
+
+        Time.timeScale = 0;
+        foreach (GameObject dupeBall in dupedBalls)
+        {
+            Destroy(dupeBall.gameObject);
+        }
     }
 }

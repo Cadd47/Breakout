@@ -21,7 +21,7 @@ public class Text : MonoBehaviour
 
     private void Update()
     {
-        balls.text = "Balls: " + ballCount.ToString();
+        balls.text = ballCount.ToString();
 
         if (miliseconds <= 0)
         {
