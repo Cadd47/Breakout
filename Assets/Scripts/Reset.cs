@@ -40,6 +40,8 @@ public class Reset : MonoBehaviour
             {
                 Text.ballCount--;
                 loser.SetActive(true);
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
 
                 Time.timeScale = 0;
                 foreach(GameObject dupeBall in dupedBalls)
@@ -66,6 +68,8 @@ public class Reset : MonoBehaviour
     public void Win()
     {
         winner.SetActive(true);
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
 
         Time.timeScale = 0;
         foreach (GameObject dupeBall in dupedBalls)

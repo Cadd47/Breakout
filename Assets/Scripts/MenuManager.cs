@@ -8,6 +8,12 @@ public class MenuManager : MonoBehaviour
     public bool isPaused = false;
     public GameObject pauseUI;
 
+    private void Awake()
+    {
+        Screen.SetResolution(1920, 1200, true);
+        Resume();
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -39,11 +45,17 @@ public class MenuManager : MonoBehaviour
     {
         Time.timeScale = 1;
         pauseUI.SetActive(false);
+        isPaused = false;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     public void Pause()
     {
         Time.timeScale = 0;
         pauseUI.SetActive(true);
+        isPaused = true;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 }
